@@ -1,0 +1,1 @@
+alias rust-repl=evcxr
