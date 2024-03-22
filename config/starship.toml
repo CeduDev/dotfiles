@@ -24,6 +24,10 @@ format = 'via [$symbol]($style)'
 [elm]
 symbol = " "
 
+[gcloud]
+symbol = "󱇶"
+disabled = true
+
 [git_branch]
 symbol = " "
 
