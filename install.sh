@@ -28,8 +28,22 @@ for file in shell/*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         if ask "${filename}?"; then
-            echo "source $(realpath "$file")" >> "$SH"
+		if grep -Fxq "source $(realpath "$file")" $SH
+			then echo "Already exists"
+			else echo "source $(realpath "$file")" >> "$SH"
+		fi
         fi
+    fi
+done
+
+# Ask which config files to create symlinks for
+echo "Do you want to create symlink for: "
+for file in config/*; do
+    if [ -f "$file" ]; then
+	filename=$(basename "$file")
+	if ask "${filename}?"; then
+		ln -s -f $(realpath "$file") ~/.config/$filename
+	fi
     fi
 done
 
