@@ -1,3 +1,6 @@
+[sudo]
+disabled = false
+
 [aws]
 symbol = " "
 
