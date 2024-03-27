@@ -19,9 +19,6 @@ if [ -f "$ZSHRC" ]; then
 	SH="$ZSHRC"
 fi
 
-echo >> $SH
-echo '# -------------- dotfiles install -----------------' >> $SH
-
 # Ask which files should be sourced
 echo "Do you want $SH to source: "
 for file in shell/*; do
@@ -46,5 +43,3 @@ for file in config/*; do
 	fi
     fi
 done
-
-echo >> $SH '# -------------- dotfiles install -----------------'
