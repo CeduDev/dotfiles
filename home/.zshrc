@@ -17,7 +17,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
 # Add in snippets
-zinit snippet OMZP::git
 
 # Load completions
 autoload -Uz compinit && compinit
