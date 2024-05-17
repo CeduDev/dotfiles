@@ -7,6 +7,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
     git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+
 # Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -55,13 +56,14 @@ zstyle ':fzf-tab:complete:cd:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 alias ls='ls --color'
 
 # Path variables
-path+=($HOME/.local/bin)
-path+=("~/.console-ninja/.bin")
-path+=("/usr/local/go/bin")
 path+=("$HOME/.local/bin")
 path+=("$HOME/zig/zig-linux-x86_64-0.13.0-dev.75+5c9eb4081")
+path+=("$HOME/.jenv/bin")
+path+=("$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin")
+path+=("$HOME/.cargo/bin")
+path+=("~/.console-ninja/.bin")
+path+=("/usr/local/go/bin")
 export GOPATH=$HOME/go
-. "$HOME/.cargo/env"
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -92,5 +94,28 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(jenv init -)"
 source /home/cedric/dotfiles/shell/aliases.sh
 source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
+source /home/cedric/dotfiles/shell/ssh-alias.sh
+
+# set DISPLAY variable to the IP automatically assigned to WSL2
+export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+sudo /etc/init.d/dbus start &> /dev/null
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+complete -C /usr/bin/terraform terraform
+
+DOCKER_DISTRO="Ubuntu"
+DOCKER_DIR=/mnt/wsl/shared-docker
+DOCKER_SOCK="$DOCKER_DIR/docker.sock"
+export DOCKER_HOST="unix://$DOCKER_SOCK"
+
+if [ ! -S "$DOCKER_SOCK" ]; then
+    mkdir -pm o=,ug=rwx "$DOCKER_DIR"
+    chgrp docker "$DOCKER_DIR"
+    /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
+fi
