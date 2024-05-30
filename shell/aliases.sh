@@ -8,3 +8,4 @@ alias gb='git branch'
 alias gp='git push'
 alias gpl='git pull'
 alias gam="git add . && git commit -m "
+alias pdfmd='pandoc -N -V papersize:a4 --variable "geometry=margin=0.2in"'
