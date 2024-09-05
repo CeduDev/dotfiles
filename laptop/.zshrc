@@ -87,5 +87,5 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-source /home/cedric/dotfiles/shell/aliases.sh
-source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
+source /home/cedric/dotfiles-scripts/shell/aliases.sh
+source /home/cedric/dotfiles-scripts/shell/case_insensitive_completion.sh
