@@ -55,8 +55,9 @@ alias ls='ls --color'
 
 # Path variables
 path+=("$HOME/.local/bin")
+path+=("$HOME/eww/target/release/eww")
 path+=("$HOME/.console-ninja/.bin")
-path+=("$HOME/zig/zig-linux-x86_64-0.13.0-dev.75+5c9eb4081")
+path+=("$HOME/zig-linux-x86_64-0.13.0-dev.386+3964b2a31")
 path+=("/usr/local/go/bin")
 export GOPATH=$HOME/go
 . "$HOME/.cargo/env"
