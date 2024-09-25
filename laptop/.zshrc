@@ -59,12 +59,6 @@ path+=("$HOME/.console-ninja/.bin")
 . "$HOME/.cargo/env"
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/cedric/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -83,9 +77,15 @@ unset __conda_setup
 export PATH
 
 # Shell integrations
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-source /home/cedric/dotfiles-scripts/shell/aliases.sh
-source /home/cedric/dotfiles-scripts/shell/case_insensitive_completion.sh
+source /home/cedric/dotfiles/shell/aliases.sh
+source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /home/cedric/dotfiles/shell/ssh-alias.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/cedric/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cedric/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/cedric/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cedric/google-cloud-sdk/completion.zsh.inc'; fi
