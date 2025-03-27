@@ -52,6 +52,7 @@ zstyle ':fzf-tab:complete:cd:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Aliases
 alias ls='ls --color'
+alias kubectl="minikube kubectl --"
 
 # Path variables
 path+=("$HOME/.local/bin")
