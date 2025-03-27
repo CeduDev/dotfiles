@@ -94,6 +94,7 @@ source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(jenv init -)"
+eval "$(fzf --zsh)"
 source /home/cedric/dotfiles/shell/aliases.sh
 source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
 source /home/cedric/dotfiles/shell/ssh-alias.sh
