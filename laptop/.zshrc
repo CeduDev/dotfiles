@@ -79,6 +79,7 @@ export PATH
 # Shell integrations
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+eval "$(fzf --zsh)"
 source /home/cedric/dotfiles/shell/aliases.sh
 source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -89,3 +90,4 @@ if [ -f '/home/cedric/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cedric/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/cedric/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cedric/google-cloud-sdk/completion.zsh.inc'; fi
+source /usr/share/nvm/init-nvm.sh
