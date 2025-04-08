@@ -59,10 +59,22 @@ done
 echo "Do you want to create symlink for: "
 for file in config/*; do
     if [ -f "$file" ]; then
-	filename=$(basename "$file")
-	if ask_sourcing "${filename}?"; then
-		ln -s -f $(realpath "$file") ~/.config/$filename
-	fi
+        filename=$(basename "$file")
+        if ask_sourcing "${filename}?"; then
+            ln -s -f $(realpath "$file") ~/.config/$filename
+        fi
+    fi
+done
+
+# Ask which common root dotfiles to create symlinks for
+echo "Do you want to create symlink for: "
+for file in  common_root_dotfiles/.[^.]*; do
+    # echo ">$i<"
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        if ask_sourcing "${filename}?"; then
+            ln -s -f $(realpath "$file") ~/$filename
+        fi
     fi
 done
 
