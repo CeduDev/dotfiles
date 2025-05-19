@@ -95,3 +95,5 @@ eval "$(fzf --zsh)"
 source /home/cedric/dotfiles/shell/aliases.sh
 source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
 source /home/cedric/dotfiles/shell/ssh-alias.sh
+
+. "$HOME/.cargo/env"
