@@ -5,35 +5,9 @@ alias ls='ls --color'
 
 # Path variables
 path+=("$HOME/.local/bin")
-# path+=("$HOME/zig/zig-linux-x86_64-0.13.0-dev.75+5c9eb4081")
-#path+=("$HOME/.jenv/bin")
 # path+=("$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin")
 path+=("$HOME/.cargo/bin")
 path+=("~/.console-ninja/.bin")
-# path+=("/usr/local/go/bin")
-# export GOPATH=$HOME/go
-#export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
-
-# The next line updates PATH for the Google Cloud SDK.
-# if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-# if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/home/cedric/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/home/cedric/miniconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/cedric/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         path+=("/home/cedric/miniconda3/bin")
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
 
 export PATH
 
@@ -51,10 +25,6 @@ source /home/cedric/dotfiles/shell/ssh-alias.sh
 # set DISPLAY variable to the IP automatically assigned to WSL2
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 # sudo /etc/init.d/dbus start &> /dev/null
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="$HOME/.sdkman"
-#[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # complete -C /usr/bin/terraform terraform
 
