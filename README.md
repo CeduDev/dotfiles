@@ -1,5 +1,11 @@
 # Repo for dotfiles installations
 
+![asd](./install_gif.gif)
+
+This is the repository for my dotfiles used across my three environments: home desktop, work laptop, and personal laptop. Since each environment has different requirements (packages etc.), each environment requires it's own .zshrc-file, found it it's respective directory. Additionally, there's an install script that install the environment from scratch, given that the prequisites are completed.
+
+This is intended for my personal use, thus, I cannot guarantee this will work for you. However, you are free to use any of the code I've created here for you own setup. If you notice any improvements or suggestions, feel free to leave an issue detailing your idea.
+
 ## Prerequisites for install script
 
 Start by installing these in this order:
