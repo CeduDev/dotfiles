@@ -62,7 +62,7 @@ fi
 print_success
 
 # Ask if the user wants to install the font
-if [ ! -f $HOME/dotfiles/font/Lilex.zip ];
+if [ ! -f $HOME/dotfiles/.local/share/fonts/Lilex.zip ];
 then 
     echo "${RED}Lilex.zip not found! Install from here: https://www.nerdfonts.com/${NC}" >&2
 elif find "$HOME/.local/share/fonts" -type f -name 'Lilex*' | grep -q .; 
@@ -73,7 +73,7 @@ then
 else
     echo -e "${BLUE}Do you want to install the Lilex font?\n${NC}"
     if ask_yes_or_no; then
-        unzip -qq $HOME/dotfiles/font/Lilex.zip -x "README.md" -j -d $HOME/.local/share/fonts/Lilex.zip
+        unzip -qq $HOME/dotfiles/.local/share/fonts/Lilex.zip -x "README.md" -j -d $HOME/.local/share/fonts/Lilex.zip
         mv $HOME/.local/share/fonts/Lilex.zip/* $HOME/.local/share/fonts/
         rm -rf $HOME/.local/share/fonts/Lilex.zip
         fc-cache -f
@@ -102,7 +102,7 @@ print_success
 
 # Ask which config files to create symlinks for
 echo -e "${BLUE}Do you want to create symlink for:"
-for file in config/*; do
+for file in .config/*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         if ask_yes_or_no "${filename}?"; then
@@ -116,7 +116,7 @@ print_success
 
 # Ask which common root dotfiles to create symlinks for
 echo -e "${BLUE}Do you want to create symlink for:"
-for file in  common_root_dotfiles/.[^.]*; do
+for file in  .root_dotfiles/.[^.]*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         if ask_yes_or_no "${filename}?"; then
