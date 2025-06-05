@@ -18,9 +18,9 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
-source /home/cedric/dotfiles/shell/aliases.sh
-source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
-source /home/cedric/dotfiles/shell/ssh-alias.sh
+source /home/cedric/dotfiles/common_scripts/aliases.sh
+source /home/cedric/dotfiles/common_scripts/case_insensitive_completion.sh
+source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 
 # set DISPLAY variable to the IP automatically assigned to WSL2
 # export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0

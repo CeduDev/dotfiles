@@ -84,7 +84,7 @@ fi
 
 # Ask which files should be sourced
 echo -e "${BLUE}Do you want $SH to source:"
-for file in shell/*; do
+for file in common_scripts/*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         echo "${BLUE}"

@@ -31,10 +31,10 @@ export PATH
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-source /home/cedric/dotfiles/shell/aliases.sh
-source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
+source /home/cedric/dotfiles/common_scripts/aliases.sh
+source /home/cedric/dotfiles/common_scripts/case_insensitive_completion.sh
+source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /home/cedric/dotfiles/shell/ssh-alias.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/cedric/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cedric/google-cloud-sdk/path.zsh.inc'; fi

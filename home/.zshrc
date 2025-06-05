@@ -42,8 +42,8 @@ source /usr/share/doc/fzf/examples/completion.zsh
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-source /home/cedric/dotfiles/shell/aliases.sh
-source /home/cedric/dotfiles/shell/case_insensitive_completion.sh
-source /home/cedric/dotfiles/shell/ssh-alias.sh
+source /home/cedric/dotfiles/common_scripts/aliases.sh
+source /home/cedric/dotfiles/common_scripts/case_insensitive_completion.sh
+source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 
 . "$HOME/.cargo/env"
