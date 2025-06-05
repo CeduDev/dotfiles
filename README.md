@@ -1,6 +1,12 @@
-# Repo for dotfiles installations
+# Dotfiles
+
+> Configuration and installer for my different environments
 
 ![asd](./assets/install_gif.gif)
+
+*Installer as of 5.6.2025*
+
+## What is this?
 
 Repository for my dotfiles used across my three environments: home desktop, work laptop, and personal laptop. Since each environment have different requirements (terminal behaviour, packages, plugins etc.), they require thei own .zshrc-file, found in it’s respective directory.
 
@@ -8,7 +14,9 @@ There’s an install script that installs the environment from scratch, given th
 
 This is intended for my personal use, thus, I cannot guarantee this will work for you. However, you are free to use any of the code I've created here for you own setup. If you notice any improvements or suggestions, feel free to leave an issue detailing your idea.
 
-## Prerequisites for install script
+## Installing
+
+### Prerequisites for install script
 
 Start by installing these in this order:
 
@@ -21,7 +29,7 @@ Start by installing these in this order:
 5. [zoxide](https://github.com/ajeetdsouza/zoxide)
 6. [fzf](https://github.com/junegunn/fzf)
 
-## Install script
+### Install script
 
 The install script can be run using `./install.sh` from the root directory. It does the following (UPDATED 3.6.2025):
 
@@ -32,4 +40,5 @@ The install script can be run using `./install.sh` from the root directory. It d
     1. If the user symlinks the files "ignore" or "template", the respective `git config --global`-command will be executed
 6. Ask the user if they want to create a symlink for each file in the directory `.root_dotfiles/`
 
-Inspiration: <https://www.youtube.com/watch?v=mSXOYhfDFYo&ab_channel=BartekSpitza>
+### Honorable mentions
+My inspiration for this came from [this](https://www.youtube.com/watch?v=mSXOYhfDFYo&ab_channel=BartekSpitza) Youtube video.
