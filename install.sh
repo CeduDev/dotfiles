@@ -73,9 +73,10 @@ then
 else
     echo -e "${BLUE}Do you want to install the Lilex font?\n${NC}"
     if ask_yes_or_no; then
-        unzip -qq $HOME/dotfiles/.local/share/fonts/Lilex.zip -x "README.md" -j -d $HOME/.local/share/fonts/Lilex.zip
-        mv $HOME/.local/share/fonts/Lilex.zip/* $HOME/.local/share/fonts/
-        rm -rf $HOME/.local/share/fonts/Lilex.zip
+        dest="$HOME/.local/share/fonts"
+        unzip -qq $HOME/dotfiles/.local/share/fonts/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
+        mv $dest/Lilex.zip/* $dest/
+        rm -rf $dest/Lilex.zip
         fc-cache -f
         print_success
     fi
@@ -117,15 +118,6 @@ find .config -type f | while read -r file; do
         fi
     fi
 done
-# for file in .config/*; do
-#     echo "$file"
-#     if [ -f "$file" ]; then
-#         filename=$(basename "$file")
-#         if ask_yes_or_no "${filename}?"; then
-#             ln -s -f $(realpath "$file") ~/.config/$filename
-#         fi
-#     fi
-# done
 
 echo ""
 print_success
