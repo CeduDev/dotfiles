@@ -2,7 +2,9 @@
 
 ![asd](./assets/install_gif.gif)
 
-This is the repository for my dotfiles used across my three environments: home desktop, work laptop, and personal laptop. Since each environment has different requirements (packages etc.), each environment requires it's own .zshrc-file, found it it's respective directory. Additionally, there's an install script that install the environment from scratch, given that the prequisites are completed.
+Repository for my dotfiles used across my three environments: home desktop, work laptop, and personal laptop. Since each environment have different requirements (terminal behaviour, packages, plugins etc.), they require thei own .zshrc-file, found in it’s respective directory.
+
+There’s an install script that installs the environment from scratch, given that the prequisites are completed. Additionally, common config files across my environments can be found (Git, Starship, and Tmux etc.), which are handled by the installer.
 
 This is intended for my personal use, thus, I cannot guarantee this will work for you. However, you are free to use any of the code I've created here for you own setup. If you notice any improvements or suggestions, feel free to leave an issue detailing your idea.
 
