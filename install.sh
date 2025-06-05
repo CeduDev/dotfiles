@@ -102,14 +102,30 @@ print_success
 
 # Ask which config files to create symlinks for
 echo -e "${BLUE}Do you want to create symlink for:"
-for file in .config/*; do
-    if [ -f "$file" ]; then
-        filename=$(basename "$file")
-        if ask_yes_or_no "${filename}?"; then
-            ln -s -f $(realpath "$file") ~/.config/$filename
+find .config -type f | while read -r file; do
+    if ask_yes_or_no "$file?"; then
+        echo -e ""
+        dest="$HOME/$file"
+        mkdir -p "$(dirname "$dest")"
+        ln -sf "$(realpath "$file")" "$dest"
+
+        # Special handling for .config/git/ignore and .config/git/template
+        if [[ "$file" == ".config/git/ignore" ]]; then
+            git config --global core.excludesFile "$dest"
+        elif [[ "$file" == ".config/git/template" ]]; then
+            git config --global commit.template "$dest"
         fi
     fi
 done
+# for file in .config/*; do
+#     echo "$file"
+#     if [ -f "$file" ]; then
+#         filename=$(basename "$file")
+#         if ask_yes_or_no "${filename}?"; then
+#             ln -s -f $(realpath "$file") ~/.config/$filename
+#         fi
+#     fi
+# done
 
 echo ""
 print_success
