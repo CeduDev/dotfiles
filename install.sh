@@ -62,10 +62,10 @@ fi
 print_success
 
 # Ask if the user wants to install the font
-if [ ! -f $HOME/dotfiles/.local/share/fonts/Lilex.zip ];
+if [ ! -f $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip ];
 then 
     echo "${RED}Lilex.zip not found! Install from here: https://www.nerdfonts.com/${NC}" >&2
-elif find "$HOME/.local/share/fonts" -type f -name 'Lilex*' | grep -q .; 
+elif find "/usr/share/fonts/TTF" -type f -name 'Lilex*' | grep -q .; 
 then
     echo -e "Font is already extracted, running fc-cache -f"
     fc-cache -f
@@ -73,8 +73,8 @@ then
 else
     echo -e "${BLUE}Do you want to install the Lilex font?\n${NC}"
     if ask_yes_or_no; then
-        dest="$HOME/.local/share/fonts"
-        unzip -qq $HOME/dotfiles/.local/share/fonts/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
+        dest="/usr/share/fonts/TTF"
+        unzip -qq $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
         mv $dest/Lilex.zip/* $dest/
         rm -rf $dest/Lilex.zip
         fc-cache -f
