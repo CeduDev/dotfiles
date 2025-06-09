@@ -74,9 +74,9 @@ else
     echo -e "${BLUE}Do you want to install the Lilex font?\n${NC}"
     if ask_yes_or_no; then
         dest="/usr/share/fonts/TTF"
-        unzip -qq $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
-        mv $dest/Lilex.zip/* $dest/
-        rm -rf $dest/Lilex.zip
+        sudo unzip -qq $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
+        sudo mv $dest/Lilex.zip/* $dest/
+        sudo rm -rf $dest/Lilex.zip
         fc-cache -f
         print_success
     fi
