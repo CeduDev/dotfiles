@@ -61,6 +61,9 @@ fi
 
 print_success
 
+# Make the dir only if it doesn't exist
+sudo mkdir -p /usr/share/fonts/TTF
+
 # Ask if the user wants to install the font
 if [ ! -f $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip ];
 then 
