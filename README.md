@@ -44,7 +44,7 @@ The install script can be run using `./install.sh` from the root directory. It d
 
 If you are using WSL, this works out of the box. However, if your virtual window settings don't work on Windows, then you need to do the following:
 
-1. Clone [this](https://github.com/hwtnb/SylphyHornPlusWin11/tree/feature/support-windows11?tab=readme-ov-file) repo
+1. Download the [latest release](https://github.com/hwtnb/SylphyHornPlusWin11/tags) (as of 12.6.2026 the version was Ver4.0.0 beta.13)
 2. Run the software `SylphyHorn` by double clicking it.
 3. Open the GUI from the taskbar
 4. Apply the desired settings. Examples are:
