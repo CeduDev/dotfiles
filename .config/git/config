@@ -3,6 +3,7 @@
   whitespace = error
   preloadindex = true
 	excludesFile = /home/cedric/.config/git/ignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [advice]
   addEmptyPathspec = false
@@ -34,9 +35,6 @@
   context     = white
   whitespace  = yellow reverse
   old         = red
-
-[pager]
-  diff = diff-so-fancy | $PAGER
 
 [diff-so-fancy]
   markEmptyLines = false
