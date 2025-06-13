@@ -20,4 +20,5 @@ alias gp='git push'
 alias gpl='git pull'
 alias gam="git add . && git commit -v"
 alias gcl="git clone"
+alias gsu="git submodule update --recursive --remote"
 alias pdfmd='pandoc -N -V papersize:a4 --variable "geometry=margin=0.2in"'
