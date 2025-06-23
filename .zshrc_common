@@ -51,3 +51,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:cd:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+export LC_ALL="fi_FI.UTF-8"
+export LANG="fi_FI.UTF-8"
+export LANGUAGE="en_US.UTF-8"
