@@ -90,6 +90,6 @@ symbol = "ﯣ "
 format = 'via [$symbol]($style)'
 
 [git_status]
-windows_starship = 'C:\Program Files\starship\bin\starship'
+windows_starship = "/mnt/c/Program Files/starship/bin/starship.exe"
 stashed = ''
 
