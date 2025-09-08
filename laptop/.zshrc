@@ -9,6 +9,8 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/.console-ninja/.bin")
 . "$HOME/.cargo/env"
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export VCPKG_ROOT=("$HOME/vcpkg")
+path+=($VCPKG_ROOT)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
