@@ -10,16 +10,9 @@ function print_success() {
     echo -e "${GREEN}Success!${NC}\n"
 }
 
-# Ask simple y/n
+# Ask simple y/n (NOTE!!! Uses a zsh convention, if using other shells then change this)
 function ask_yes_or_no() {
-    read -q "REPLY?$1 (y/n): " resp
-    if [ -z "$resp" ]; then
-        response_lc="y" # empty is Yes
-    else
-        response_lc=$(echo -e "$resp" | tr '[:upper:]' '[:lower:]') # case insensitive
-    fi
-
-    [ "$response_lc" = "y" ]
+    read -q "REPLY?$1 (y/n): "
 }
 
 # Ask which system the user is on
@@ -34,7 +27,6 @@ function new_line() {
 }
 
 echo -e "${BLUE}Welcome to the system install script!${NC}\n"
-
 
 # Ask for system and assign symolink for .zshrc and path to it
 system=$(ask_system)
@@ -85,7 +77,6 @@ else
     fi
 fi
 
-
 # Ask which files should be sourced
 echo -e "${BLUE}Do you want $SH to source:"
 for file in common_scripts/*; do
@@ -107,17 +98,21 @@ print_success
 # Ask which config files to create symlinks for
 echo -e "${BLUE}Do you want to create symlink for:"
 find .config -type f | while read -r file; do
+    echo -e "${BLUE}"
     if ask_yes_or_no "$file?"; then
-        echo -e ""
-        dest="$HOME/$file"
-        mkdir -p "$(dirname "$dest")"
-        ln -sf "$(realpath "$file")" "$dest"
+        if [ -L ~/$file ]
+            then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
+            else
+                dest="$HOME/$file"
+                mkdir -p "$(dirname "$dest")"
+                ln -sf "$(realpath "$file")" "$dest"
 
-        # Special handling for .config/git/ignore and .config/git/template
-        if [[ "$file" == ".config/git/ignore" ]]; then
-            git config --global core.excludesFile "$dest"
-        elif [[ "$file" == ".config/git/template" ]]; then
-            git config --global commit.template "$dest"
+                # Special handling for .config/git/ignore and .config/git/template
+                if [[ "$file" == ".config/git/ignore" ]]; then
+                    git config --global core.excludesFile "$dest"
+                elif [[ "$file" == ".config/git/template" ]]; then
+                    git config --global commit.template "$dest"
+                fi
         fi
     fi
 done
@@ -131,7 +126,10 @@ for file in  .root_dotfiles/.[^.]*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         if ask_yes_or_no "${filename}?"; then
-            ln -s -f $(realpath "$file") ~/$filename
+            if [ -L ~/$file ]
+                then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
+                else ln -s -f $(realpath "$file") ~/$filename
+            fi
         fi
     fi
 done
