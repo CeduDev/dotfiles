@@ -101,7 +101,7 @@ find .config -type f | while read -r file; do
     echo -e "${BLUE}"
     if ask_yes_or_no "$file?"; then
         if [ -L ~/$file ]
-            then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
+            then echo "\n${PURPLE}Already symlinked, skipping${BLUE}"
             else
                 dest="$HOME/$file"
                 mkdir -p "$(dirname "$dest")"
@@ -117,16 +117,13 @@ find .config -type f | while read -r file; do
     fi
 done
 
-echo ""
-print_success
-
 # Ask which common root dotfiles to create symlinks for
-echo -e "${BLUE}Do you want to create symlink for:"
 for file in  .root_dotfiles/.[^.]*; do
+    echo -e "${BLUE}"
     if [ -f "$file" ]; then
         filename=$(basename "$file")
         if ask_yes_or_no "${filename}?"; then
-            if [ -L ~/$file ]
+            if [ -L ~/$filename ]
                 then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
                 else ln -s -f $(realpath "$file") ~/$filename
             fi
