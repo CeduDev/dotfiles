@@ -7,7 +7,7 @@ PURPLE='\033[0;35m'
 NC='\033[0m' # No Color
 
 function print_success() {
-    echo -e "${GREEN}Success!${NC}\n"
+    echo -e "${GREEN}=========================\n\tSuccess!\n=========================\n${NC}"
 }
 
 # Ask simple y/n (NOTE!!! Uses a zsh convention, if using other shells then change this)
@@ -82,56 +82,62 @@ echo -e "${BLUE}Do you want $SH to source:"
 for file in common_scripts/*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
-        echo "${BLUE}"
-        if ask_yes_or_no "${filename}?"; then
-            if grep -Fxq "source $(realpath "$file")" $SH
-                then echo -e "\n${PURPLE}Already exists, no need to source"
-                else echo -e "source $(realpath "$file")" >> "$SH"
-            fi
+        new_line
+        if ask_yes_or_no "${filename}?"
+            then
+                if grep -Fxq "source $(realpath "$file")" $SH
+                    then echo "\n${PURPLE}Already exists, no need to source${BLUE}"
+                    else echo -e "source $(realpath "$file")" >> "$SH"
+                fi
+            else new_line
         fi
     fi
 done
 
-echo ""
+new_line
 print_success
 
 # Ask which config files to create symlinks for
 echo -e "${BLUE}Do you want to create symlink for:"
 find .config -type f | while read -r file; do
-    echo -e "${BLUE}"
-    if ask_yes_or_no "$file?"; then
-        if [ -L ~/$file ]
-            then echo "\n${PURPLE}Already symlinked, skipping${BLUE}"
-            else
-                dest="$HOME/$file"
-                mkdir -p "$(dirname "$dest")"
-                ln -sf "$(realpath "$file")" "$dest"
+    new_line
+    if ask_yes_or_no "$file?"
+        then
+            if [ -L ~/$file ]
+                then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
+                else
+                    dest="$HOME/$file"
+                    mkdir -p "$(dirname "$dest")"
+                    ln -sf "$(realpath "$file")" "$dest"
 
-                # Special handling for .config/git/ignore and .config/git/template
-                if [[ "$file" == ".config/git/ignore" ]]; then
-                    git config --global core.excludesFile "$dest"
-                elif [[ "$file" == ".config/git/template" ]]; then
-                    git config --global commit.template "$dest"
-                fi
-        fi
+                    # Special handling for .config/git/ignore and .config/git/template
+                    if [[ "$file" == ".config/git/ignore" ]]; then
+                        git config --global core.excludesFile "$dest"
+                    elif [[ "$file" == ".config/git/template" ]]; then
+                        git config --global commit.template "$dest"
+                    fi
+            fi
+        else echo -e "${BLUE}"
     fi
 done
 
 # Ask which common root dotfiles to create symlinks for
 for file in  .root_dotfiles/.[^.]*; do
-    echo -e "${BLUE}"
     if [ -f "$file" ]; then
         filename=$(basename "$file")
-        if ask_yes_or_no "${filename}?"; then
-            if [ -L ~/$filename ]
-                then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
-                else ln -s -f $(realpath "$file") ~/$filename
-            fi
+        new_line
+        if ask_yes_or_no "${filename}?"
+            then
+                if [ -L ~/$filename ]
+                    then echo -e "\n${PURPLE}Already symlinked, skipping${BLUE}"
+                    else ln -s -f $(realpath "$file") ~/$filename
+                fi
+            else echo -e "${BLUE}"
         fi
     fi
 done
 
-echo ""
+new_line
 print_success
 
 echo "${GREEN}Install script run successfully, enjoy your new system!"
