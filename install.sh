@@ -48,8 +48,8 @@ function install_prerequisites() {
         echo "Installing core tools (git, zsh, curl, unzip, fontconfig)..."
         sudo apt-get install -y git zsh curl unzip fontconfig fzf
         
-        # Install eza (modern replacement for exa) or exa if available
-        if ! command -v exa &> /dev/null && ! command -v eza &> /dev/null; then
+        # Install eza (modern replacement for exa)
+        if ! command -v eza &> /dev/null; then
              echo "Installing eza (exa replacement)..."
              sudo apt-get install -y gpg
              sudo mkdir -p /etc/apt/keyrings
@@ -58,6 +58,8 @@ function install_prerequisites() {
              sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
              sudo apt-get update
              sudo apt-get install -y eza
+        else
+             echo "eza is already installed."
         fi
 
     elif command -v pacman &> /dev/null; then
