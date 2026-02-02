@@ -7,6 +7,7 @@ alias ls='ls --color'
 path+=("$HOME/.local/bin")
 path+=("$HOME/.cargo/bin")
 path+=("~/.console-ninja/.bin")
+path+=("$(npm prefix -g)/bin")
 
 export PATH
 

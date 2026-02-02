@@ -14,7 +14,8 @@ function print_success() {
 function ask_yes_or_no() {
     local prompt="$1 (y/n): "
     while true; do
-        read -p "$prompt" -n 1 -r REPLY
+        # Read from /dev/tty to allow usage inside pipes (e.g. find | while read)
+        read -p "$prompt" -n 1 -r REPLY < /dev/tty
         echo "" # new line
         case $REPLY in
             [Yy]* ) return 0;;
@@ -26,8 +27,9 @@ function ask_yes_or_no() {
 
 # Ask which system the user is on
 function ask_system() {
-    echo -e "${BLUE}What system are you using (home = h, work = w, laptop = l, server = s)?${NC}"
-    read -r resp
+    # Print prompt to stderr so it's visible when capturing stdout
+    echo -e "${BLUE}What system are you using (home = h, work = w, laptop = l, server = s)?${NC}" >&2
+    read -r resp < /dev/tty
     echo "${resp,,}" # lowercase
 }
 
@@ -76,10 +78,17 @@ function install_prerequisites() {
     fi
     
     # Change default shell to zsh if not already
-    if [ "$SHELL" != "$(which zsh)" ]; then
+    current_shell=$(basename "$SHELL")
+    target_shell=$(which zsh)
+    
+    if [ "$current_shell" != "zsh" ] && [ "$SHELL" != "$target_shell" ]; then
         echo -e "${PURPLE}Changing default shell to zsh...${NC}"
-        chsh -s "$(which zsh)"
-        echo "Shell changed. You may need to log out and back in for this to take effect."
+        # Use sudo chsh to avoid password prompt if user has sudo NOPASSWD, 
+        # or at least handle it cleanly. Passing username explicitly is safer.
+        sudo chsh -s "$target_shell" "$USER"
+        echo "Shell changed to $target_shell. Log out and back in to apply."
+    else
+        echo "Default shell is already zsh."
     fi
 
     print_success
@@ -183,7 +192,7 @@ fi
 
 # 3. Source Scripts
 # Ask which files should be sourced
-echo -e "${BLUE}Do you want $SH to source:${NC}"
+echo -e "${BLUE}Do you want $SH to source:"
 for file in common_scripts/*; do
     if [ -f "$file" ]; then
         filename=$(basename "$file")
@@ -203,7 +212,7 @@ print_success
 
 # 4. Config Symlinks
 # Ask which config files to create symlinks for
-echo -e "${BLUE}Do you want to create symlink for:${NC}"
+echo -e "${BLUE}Do you want to create symlink for:"
 find .config -type f | while read -r file; do
     new_line
     if ask_yes_or_no "$file?"; then
