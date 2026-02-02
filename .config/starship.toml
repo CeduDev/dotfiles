@@ -11,9 +11,6 @@ disabled = false
 # [conda]
 # symbol = " "
 
-[cpp]
-disabled = false
-
 [dart]
 symbol = " "
 format = "via [$symbol]($style)"

@@ -58,8 +58,6 @@ function install_prerequisites() {
              sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
              sudo apt-get update
              sudo apt-get install -y eza
-        else
-             echo "eza is already installed."
         fi
 
     elif command -v pacman &> /dev/null; then
