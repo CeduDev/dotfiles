@@ -9,6 +9,8 @@ path+=("$HOME/.local/bin")
 path+=("$HOME/.console-ninja/.bin")
 . "$HOME/.cargo/env"
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export FLINK_HOME=$HOME/flink-2.1.0
+path+=("$FLINK_HOME/bin")
 export VCPKG_ROOT=("$HOME/vcpkg")
 path+=($VCPKG_ROOT)
 
@@ -44,3 +46,7 @@ if [ -f '/home/cedric/google-cloud-sdk/path.zsh.inc' ]; then . '/home/cedric/goo
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/cedric/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/cedric/google-cloud-sdk/completion.zsh.inc'; fi
 source /usr/share/nvm/init-nvm.sh
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
