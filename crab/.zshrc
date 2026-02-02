@@ -29,3 +29,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 source /home/crab/dotfiles/common_scripts/aliases.sh
 source /home/crab/dotfiles/common_scripts/case_insensitive_completion.sh
 source /home/crab/dotfiles/common_scripts/ssh-alias.sh
+
+# OpenClaw Completion
+source <(openclaw completion --shell zsh)
