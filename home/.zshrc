@@ -12,6 +12,8 @@ path+=("/usr/local/go/bin")
 export GOPATH=$HOME/go
 . "$HOME/.cargo/env"
 export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))
+export FLINK_HOME=$HOME/flink-2.1.0
+path+=("$FLINK_HOME/bin")
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
@@ -47,3 +49,7 @@ source /home/cedric/dotfiles/common_scripts/case_insensitive_completion.sh
 source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 
 . "$HOME/.cargo/env"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
