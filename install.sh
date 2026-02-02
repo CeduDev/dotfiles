@@ -17,7 +17,7 @@ function ask_yes_or_no() {
 
 # Ask which system the user is on
 function ask_system() {
-    vared -p "%F{blue}What system are you using (home = h, work = w, laptop = l)?%f" -c resp
+    vared -p "%F{blue}What system are you using (home = h, work = w, laptop = l, server = s)?%f" -c resp
     response_lc=$(echo -e "$resp" | tr '[:upper:]' '[:lower:]') # case insensitive
     echo -e ${response_lc}
 }
@@ -46,6 +46,11 @@ then
     echo -e "Creating .zshrc symbolink for laptop"
     ln -s -f $HOME/dotfiles/laptop/.zshrc ~/.zshrc
     SH="${HOME}/dotfiles/laptop/.zshrc"
+elif [[ $system == "s" ]]
+then
+    echo -e "Creating .zshrc symbolink for server (crab)"
+    ln -s -f $HOME/dotfiles/crab/.zshrc ~/.zshrc
+    SH="${HOME}/dotfiles/crab/.zshrc"
 else
     echo -e "Remember to create your own .zshrc file in your home directory!"
     SH="${HOME}/.zshrc"
@@ -57,23 +62,41 @@ print_success
 sudo mkdir -p /usr/share/fonts/TTF
 
 # Ask if the user wants to install the font
-if [ ! -f $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip ];
-then 
+if [ ! -f "$HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip" ]; then 
     echo "${RED}Lilex.zip not found! Install from here: https://www.nerdfonts.com/${NC}" >&2
-elif find "/usr/share/fonts/TTF" -type f -name 'Lilex*' | grep -q .; 
-then
+elif find "/usr/share/fonts/TTF" -type f -name 'Lilex*' | grep -q .; then
     echo -e "Font is already extracted, running fc-cache -f"
+    if ! command -v fc-cache &> /dev/null; then
+        echo "Installing fontconfig..."
+        sudo apt-get install -y fontconfig
+    fi
     fc-cache -f
     print_success
 else
     echo -e "${BLUE}Do you want to install the Lilex font?\n${NC}"
     if ask_yes_or_no; then
+        # Check/Install dependency
+        if ! command -v fc-cache &> /dev/null; then
+            echo "Installing fontconfig..."
+            sudo apt-get install -y fontconfig
+        fi
+
         dest="/usr/share/fonts/TTF"
-        sudo unzip -qq $HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip -x "README.md" -j -d $dest/Lilex.zip
-        sudo mv $dest/Lilex.zip/* $dest/
-        sudo rm -rf $dest/Lilex.zip
-        fc-cache -f
-        print_success
+        sudo mkdir -p "$dest"
+        
+        # Use temp dir to avoid wildcard expansion issues with sudo
+        temp_dir=$(mktemp -d)
+        echo "Extracting Lilex.zip..."
+        
+        if unzip -q "$HOME/dotfiles/root/usr/share/fonts/TTF/Lilex.zip" -x "README.md" -j -d "$temp_dir"; then
+            sudo mv "$temp_dir"/* "$dest/"
+            rm -rf "$temp_dir"
+            fc-cache -f
+            print_success
+        else
+            echo "${RED}Unzip failed! Check if unzip is installed (sudo apt install unzip) or if the zip is valid.${NC}" >&2
+            rm -rf "$temp_dir"
+        fi
     fi
 fi
 
