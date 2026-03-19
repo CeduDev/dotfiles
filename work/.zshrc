@@ -16,6 +16,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 #eval "$(jenv init -)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# source <(fzf --zsh)
 [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f /usr/share/doc/fzf/examples/completion.zsh ] && source /usr/share/doc/fzf/examples/completion.zsh
 source /home/cedric/dotfiles/common_scripts/aliases.sh
@@ -30,16 +31,16 @@ source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/ZscalerRootCertificate-2048-SHA256-Feb2025.pem"
 
-DOCKER_DISTRO="Ubuntu"
-DOCKER_DIR=/mnt/wsl/shared-docker
-DOCKER_SOCK="$DOCKER_DIR/docker.sock"
-export DOCKER_HOST="unix://$DOCKER_SOCK"
+# DOCKER_DISTRO="Ubuntu"
+# DOCKER_DIR=/mnt/wsl/shared-docker
+# DOCKER_SOCK="$DOCKER_DIR/docker.sock"
+# export DOCKER_HOST="unix://$DOCKER_SOCK"
 
-if [ ! -S "$DOCKER_SOCK" ]; then
-     mkdir -pm o=,ug=rwx "$DOCKER_DIR"
-     chgrp docker "$DOCKER_DIR"
-     /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
-fi
+# if [ ! -S "$DOCKER_SOCK" ]; then
+#      mkdir -pm o=,ug=rwx "$DOCKER_DIR"
+#      chgrp docker "$DOCKER_DIR"
+#      /mnt/c/Windows/System32/wsl.exe -d $DOCKER_DISTRO sh -c "nohup sudo -b dockerd < /dev/null > $DOCKER_DIR/dockerd.log 2>&1"
+# fi
 PATH=~/.console-ninja/.bin:$PATH
 
 export NVM_DIR="$HOME/.nvm"
