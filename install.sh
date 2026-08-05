@@ -40,14 +40,14 @@ function new_line() {
 function install_prerequisites() {
     echo -e "${BLUE}Checking and installing prerequisites...${NC}"
 
-    # Check for apt (Debian/Ubuntu)
+    # Debian/Ubuntu
     if command -v apt-get &> /dev/null; then
         echo "Updating package list..."
         sudo apt-get update
-        
+
         echo "Installing core tools (git, zsh, curl, unzip, fontconfig)..."
         sudo apt-get install -y git zsh curl unzip fontconfig fzf
-        
+
         # Install eza (modern replacement for exa)
         if ! command -v eza &> /dev/null; then
              echo "Installing eza (exa replacement)..."
@@ -60,9 +60,17 @@ function install_prerequisites() {
              sudo apt-get install -y eza
         fi
 
+    # Arch Linux
     elif command -v pacman &> /dev/null; then
-        # Arch Linux support (just in case)
         sudo pacman -Syu --noconfirm git zsh curl unzip fontconfig fzf eza zoxide starship
+
+    # Fedora
+    elif command -v dnf &> /dev/null; then
+        echo "Updating package list..."
+        sudo dnf upgrade -y --refresh
+
+        echo "Installing core tools (git, zsh, curl, unzip, fontconfig)..."
+        sudo dnf install -y git zsh curl unzip fontconfig fzf eza
     fi
 
     # Install Starship (Cross-platform)
@@ -153,6 +161,8 @@ elif find "/usr/share/fonts/TTF" -type f -name 'Lilex*' | grep -q .; then
             sudo apt-get install -y fontconfig
         elif command -v pacman &> /dev/null; then
             sudo pacman -S --noconfirm fontconfig
+        elif command -v dnf &> /dev/null; then
+            sudo dnf install -y fontconfig
         fi
     fi
     fc-cache -f
@@ -167,6 +177,8 @@ else
                 sudo apt-get install -y fontconfig
             elif command -v pacman &> /dev/null; then
                 sudo pacman -S --noconfirm fontconfig
+            elif command -v dnf &> /dev/null; then
+                sudo dnf install -y fontconfig
             fi
         fi
 

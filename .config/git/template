@@ -1,38 +1,27 @@
-# studies: 🎓 
+# studies:
 
-# WIP: 🚧 
+# WIP:
 
-# feat: ✨ 
-# feat: 🔍 
-# feat: 🔗 
-# feat: 🔒 
+# feat:
 
-# fix: 🐛 
-# fix: 🐞 
-# fix: 🩹 
-# fix: 🚑️ 
+# fix:
 
-# style: 💅 
-# style: 🎨 
-# style: 💄 
+# style:
 
-# ci: 🦊 
-# ci: 📦 
+# ci:
 
-# deploy: 🚀 
-# deploy: 📦 
+# deploy:
 
-# chore: 🧹 
-# chore: 🔧 
-# chore: ⚙️ 
-# docs: 📜 
+# chore:
 
-# refactor: 🔨 
-# perf: 🚀 
+# docs:
 
-# test: 🚦 
-# debug: 🧪 
+# refactor:
 
-# BREAKING CHANGE: 🚨 
-# BREAKING CHANGE: 💥 
-# BREAKING CHANGE: 💣 
+# perf:
+
+# test:
+
+# debug:
+
+# BREAKING CHANGE:
