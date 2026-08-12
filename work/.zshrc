@@ -32,7 +32,7 @@ source /home/cedric/dotfiles/common_scripts/ssh-alias.sh
 export NODE_EXTRA_CA_CERTS="/usr/local/share/ca-certificates/ZscalerRootCertificate-2048-SHA256-Feb2025.pem"
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
-export BROWSER='/mnt/c/Windows/explorer.exe'
+export BROWSER="$HOME/chrome.exe"
 
 # DOCKER_DISTRO="Ubuntu"
 # DOCKER_DIR=/mnt/wsl/shared-docker
