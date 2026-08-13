@@ -24,4 +24,5 @@ alias gcl="git clone"
 alias gch="git checkout"
 alias gsu="git submodule update --recursive --remote"
 alias pdfmd='pandoc -N -V papersize:a4 --variable "geometry=margin=0.2in"'
-alias tui="openclaw tui"
+
+alias tmain='tmux a -t main'
