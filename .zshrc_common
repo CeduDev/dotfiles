@@ -55,3 +55,11 @@ zstyle ':fzf-tab:complete:cd:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # export LC_ALL="fi_FI.UTF-8"
 # export LANG="fi_FI.UTF-8"
 # export LANGUAGE="en_US.UTF-8"
+
+# Tmux
+local TMUX_HOME="${HOME}/.tmux/plugins/tpm"
+# Download Tmux Plugin Manager if it's not there yet
+if [ ! -d "$TMUX_HOME" ]; then
+    mkdir -p "$(dirname $TMUX_HOME)"
+    git clone https://github.com/tmux-plugins/tpm $TMUX_HOME
+fi
