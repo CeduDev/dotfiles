@@ -23,6 +23,10 @@ alias gam="git add . && git commit -v"
 alias gcl="git clone"
 alias gch="git checkout"
 alias gsu="git submodule update --recursive --remote"
+alias gr="git restore"
+
 alias pdfmd='pandoc -N -V papersize:a4 --variable "geometry=margin=0.2in"'
 
 alias tmain='tmux a -t main'
+alias tls='tmux ls'
+alias tk='tmux kill-session -t'
