@@ -72,3 +72,6 @@
 
 [commit]
 	template = /home/cedric/.config/git/template
+[credential]
+	helper = !aws --profile oph-utility codecommit credential-helper $@
+	UseHttpPath = true
