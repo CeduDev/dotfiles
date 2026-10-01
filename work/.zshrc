@@ -1,4 +1,5 @@
 source $HOME/dotfiles/.zshrc_common
+source $HOME/dotfiles/work/secrets.sh
 
 # Aliases
 alias ls='ls --color'
