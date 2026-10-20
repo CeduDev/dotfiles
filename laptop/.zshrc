@@ -1,7 +1,6 @@
 source $HOME/dotfiles/.zshrc_common
 
 # Aliases
-alias ls='ls --color'
 alias kubectl="minikube kubectl --"
 
 # Path variables

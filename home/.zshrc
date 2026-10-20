@@ -1,8 +1,5 @@
 source $HOME/dotfiles/.zshrc_common
 
-# Aliases
-alias ls='ls --color'
-
 # Path variables etc
 path+=("$HOME/.local/bin")
 path+=("$HOME/.console-ninja/.bin")

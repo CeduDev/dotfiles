@@ -1,4 +1,5 @@
 alias rust-repl=evcxr
+alias ls='ls --color'
 alias ll="eza -l -g --icons --git"
 alias lla="eza -la -g --icons --git"
 alias llt="eza -1 --icons --tree --git-ignore"
@@ -28,5 +29,6 @@ alias gr="git restore"
 alias pdfmd='pandoc -N -V papersize:a4 --variable "geometry=margin=0.2in"'
 
 alias tmain='tmux a -t main'
+alias ta='tmux a -t'
 alias tls='tmux ls'
 alias tk='tmux kill-session -t'

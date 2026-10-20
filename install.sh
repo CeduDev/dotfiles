@@ -46,7 +46,10 @@ function install_prerequisites() {
         sudo apt-get update
 
         echo "Installing core tools (git, zsh, curl, unzip, fontconfig)..."
-        sudo apt-get install -y git zsh curl unzip fontconfig fzf
+        sudo apt-get install -y git zsh curl unzip fontconfig fzf ripgrep fd-find
+
+	    # Symlink fd-find to fd (https://github.com/sharkdp/fd#on-ubuntu)
+	    ln -s $(which fdfind) ~/.local/bin/fd
 
         # Install eza (modern replacement for exa)
         if ! command -v eza &> /dev/null; then
@@ -62,7 +65,7 @@ function install_prerequisites() {
 
     # Arch Linux
     elif command -v pacman &> /dev/null; then
-        sudo pacman -Syu --noconfirm git zsh curl unzip fontconfig fzf eza zoxide starship
+        sudo pacman -Syu --noconfirm git zsh curl unzip fontconfig fzf eza zoxide starship ripgrep fd
 
     # Fedora
     elif command -v dnf &> /dev/null; then
@@ -70,7 +73,7 @@ function install_prerequisites() {
         sudo dnf upgrade -y --refresh
 
         echo "Installing core tools (git, zsh, curl, unzip, fontconfig)..."
-        sudo dnf install -y git zsh curl unzip fontconfig fzf eza
+        sudo dnf install -y git zsh curl unzip fontconfig fzf eza ripgrep fd-find
     fi
 
     # Install Starship (Cross-platform)
