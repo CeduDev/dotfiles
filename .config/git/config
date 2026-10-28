@@ -4,6 +4,7 @@
   preloadindex = true
 	excludesFile = /home/cedric/.config/git/ignore
 	pager = diff-so-fancy | less --tabs=4 -RFX
+  autocrlf = false
 
 [advice]
   addEmptyPathspec = false
